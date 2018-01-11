@@ -1,0 +1,14 @@
+language: node_js
+notifications:
+  email: false
+node_js:
+  - '8'
+  - '6'
+script:
+  - npm run lint
+  - node node_modules/.bin/prettier -l "*.{js,json,md}"
+  - npm run test
+branches:
+  only:
+    - master
+    - /^greenkeeper/.*$/
