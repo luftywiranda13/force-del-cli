@@ -3,6 +3,7 @@
 
 const forceDel = require('force-del');
 const meow = require('meow');
+const updateNotifier = require('update-notifier');
 
 const cli = meow(`
   Usage
@@ -12,6 +13,8 @@ const cli = meow(`
     $ force-del silly-faces.jpg
     $ force-del '*.jpg' '!too-cute.jpg'
 `);
+
+updateNotifier({ pkg: cli.pkg }).notify();
 
 if (cli.input.length === 0) {
   console.error('Specify at least one path');
