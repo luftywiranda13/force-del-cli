@@ -1,4 +1,4 @@
-# force-del-cl
+# force-del-cli
 
 [![Package Version](https://img.shields.io/npm/v/force-del-cli.svg)](https://www.npmjs.com/package/force-del-cli)
 [![Build Status: Linux](https://img.shields.io/travis/luftywiranda13/force-del-cli/master.svg)](https://travis-ci.org/luftywiranda13/force-del-cli)
