@@ -26,7 +26,7 @@
     "cli.js"
   ],
   "dependencies": {
-    "force-del": "^1.0.0",
+    "force-del": "^1.0.2",
     "meow": "^4.0.0",
     "update-notifier": "^2.3.0"
   },
@@ -39,7 +39,7 @@
     "jest": "^22.0.4",
     "lint-staged": "^6.0.0",
     "prettier": "^1.9.2",
-    "remove-lockfiles": "^2.0.4",
+    "remove-lockfiles": "^2.1.1",
     "xo": "^0.18.2"
   },
   "jest": {
