@@ -1,5 +1,7 @@
 # force-del-cli
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/luftywiranda13/force-del-cli.svg)](https://greenkeeper.io/)
+
 [![Package Version](https://img.shields.io/npm/v/force-del-cli.svg)](https://www.npmjs.com/package/force-del-cli)
 [![Build Status: Linux](https://img.shields.io/travis/luftywiranda13/force-del-cli/master.svg)](https://travis-ci.org/luftywiranda13/force-del-cli)
 [![Downloads Status](https://img.shields.io/npm/dm/force-del-cli.svg)](https://npm-stat.com/charts.html?package=force-del-cli&from=2016-04-01)
