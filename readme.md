@@ -10,17 +10,10 @@ Remember that if `git` doesnʼt manage those files, `force-del` will delete them
 
 ## How does it work?
 
-* Files were committed in `git`:
-
-  Run `git rm -f file1 file2 …` under the hood. As the result, those files are deleted and marked as `deleted` in your staging area.
-
-* Files are in staging area:
-
-  Like before, run `git rm -f file1 file2 …` under the hood. Those files will also be marked as `deleted` in your staging area.
-
-* Files are not managed by `git`:
-
-  `force-del` will perform deletion by utilizing [del](https://github.com/sindresorhus/del).
+* First, `force-del` filters the files that should be deleted by using [globby](https://github.com/sindresorhus/globby).
+* Maps those files to be included in `git rm -f` command one by one.
+* If `git rm -f` fails, it means that `git` doesnʼt recognize the file. So `force-del` fallbacks to use [del](https://github.com/sindresorhus/del) to perform deletion.
+* The processes above run concurrently.
 
 ## Installation
 
