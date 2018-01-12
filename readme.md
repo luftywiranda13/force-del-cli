@@ -6,14 +6,14 @@
 
 Force delete files or folders using glob patterns.
 
-Remember that if `git` doesnʼt manage those files, `force-del` will delete them permanently (not to the trash).
+If the matching files or folders are managed by `git` theyʼll be deleted and marked as `deleted` in staging area, ready to be committed. In the other hand, `force-del` will delete them permanently (not to the trash).
 
 ## How does it work?
 
-* First, `force-del` filters the files that should be deleted by using [globby](https://github.com/sindresorhus/globby).
-* Maps those files to be included in `git rm -f` command one by one.
-* If `git rm -f` fails, it means that `git` doesnʼt recognize the file. So `force-del` fallbacks to use [del](https://github.com/sindresorhus/del) to perform deletion.
-* The processes above run concurrently.
+* Filters the files that should be deleted by using [globby](https://github.com/sindresorhus/globby).
+* Maps those files to be included in `git rm -f` command _one-by-one_.
+* Fallbacks to use [del](https://github.com/sindresorhus/del) if those files arenʼt managed by `git`.
+* These processes run concurrently.
 
 ## Installation
 
