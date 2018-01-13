@@ -3,16 +3,30 @@
 
 const forceDel = require('force-del');
 const meow = require('meow');
+const plur = require('plur');
 const updateNotifier = require('update-notifier');
 
-const cli = meow(`
+const cli = meow(
+  `
   Usage
     $ force-del <path|glob> [...]
+
+  Options
+    --verbose  List deleted files
 
   Examples
     $ force-del silly-faces.jpg
     $ force-del '*.jpg' '!too-cute.jpg'
-`);
+`,
+  {
+    flags: {
+      verbose: {
+        type: 'boolean',
+        default: true,
+      },
+    },
+  }
+);
 
 updateNotifier({ pkg: cli.pkg }).notify();
 
@@ -22,5 +36,15 @@ if (cli.input.length === 0) {
 }
 
 forceDel(cli.input).then(files => {
-  console.log(files.join('\n'));
+  if (cli.flags.verbose) {
+    console.log(files.join('\n'));
+  }
+
+  if (files.length === 0) {
+    console.log('No items deleted');
+  }
+
+  if (files.length > 0) {
+    console.log(`Deleted ${files.length} ${plur('item', files.length)}`);
+  }
 });

@@ -1,20 +1,24 @@
 'use strict';
 
-const { existsSync, removeSync, writeFileSync } = require('fs-extra');
+const { pathExists, remove, writeFileSync } = require('fs-extra');
 const execa = require('execa');
 
-beforeEach(() => {
+it('deletes files', async () => {
+  expect.assertions(2);
   writeFileSync('1.tmp');
   writeFileSync('99.tmp');
-});
 
-afterEach(() => {
-  removeSync('99.tmp');
-});
-
-it('deletes files', async () => {
   await execa('./cli.js', ['*.tmp', '!99.tmp']);
 
-  expect(existsSync('1.tmp')).toBe(false);
-  expect(existsSync('99.tmp')).toBe(true);
+  await expect(pathExists('1.tmp')).resolves.toBe(false);
+  await expect(pathExists('99.tmp')).resolves.toBe(true);
+
+  await remove('99.tmp');
+});
+
+it('logs deletes files', async () => {
+  expect.assertions(1);
+  const res = await execa('./cli.js', ['*.mp4']);
+
+  expect(res.stdout).not.toBe(undefined);
 });

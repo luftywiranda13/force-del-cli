@@ -26,10 +26,11 @@ npm install --global force-del-cli
 ```sh
 $ force-del --help
 
-  Force delete files or folders using glob patterns
-
   Usage
     $ force-del <path|glob> [...]
+
+  Options
+    --verbose  List deleted files
 
   Examples
     $ force-del silly-faces.jpg
