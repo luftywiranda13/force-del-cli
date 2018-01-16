@@ -1,19 +1,19 @@
 # force-del-cli
 
-[![Package Version](https://img.shields.io/npm/v/force-del-cli.svg)](https://www.npmjs.com/package/force-del-cli)
-[![Build Status: Linux](https://img.shields.io/travis/luftywiranda13/force-del-cli/master.svg)](https://travis-ci.org/luftywiranda13/force-del-cli)
-[![Downloads Status](https://img.shields.io/npm/dm/force-del-cli.svg)](https://npm-stat.com/charts.html?package=force-del-cli&from=2016-04-01)
+> Force delete files or folders using globs
 
-Force delete files or folders using glob patterns.
+[![Package Version](https://img.shields.io/npm/v/force-del-cli.svg?style=flat-square)](https://www.npmjs.com/package/force-del-cli)
+[![Downloads Status](https://img.shields.io/npm/dm/force-del-cli.svg?style=flat-square)](https://npm-stat.com/charts.html?package=force-del-cli&from=2016-04-01)
+[![Build Status: Linux](https://img.shields.io/travis/luftywiranda13/force-del-cli/master.svg?style=flat-square)](https://travis-ci.org/luftywiranda13/force-del-cli)
 
-If the matching files or folders are managed by `git` theyʼll be deleted and marked as `deleted` in staging area, ready to be committed. In the other hand, `force-del` will delete them permanently (not to the trash).
+If the matching files or folders are managed by `git`, theyʼll be deleted and marked as `deleted` in staging area. Otherwise, theyʼll be deleted permanently (not to the trash).
 
 ## How does it work?
 
-* Filters the files that should be deleted by using [globby](https://github.com/sindresorhus/globby).
-* Maps those files to be included in `git rm -f` command _one-by-one_.
-* Fallbacks to use [del](https://github.com/sindresorhus/del) if those files arenʼt managed by `git`.
-* These processes run concurrently.
+* Filters the files that should be deleted by using [globby](https://github.com/sindresorhus/globby)
+* Maps those _one-by-one_ to be included in `git rm -f` command
+* Use [del](https://github.com/sindresorhus/del) if the matching item isnʼt managed by `git`
+* These processes run concurrently
 
 ## Installation
 
@@ -27,7 +27,7 @@ npm install --global force-del-cli
 $ force-del --help
 
   Usage
-    $ force-del <path|glob> [...]
+    $ force-del [<path|glob> ...]
 
   Options
     --verbose  List deleted files

@@ -9,7 +9,7 @@ const updateNotifier = require('update-notifier');
 const cli = meow(
   `
   Usage
-    $ force-del <path|glob> [...]
+    $ force-del [<path|glob> ...]
 
   Options
     --verbose  List deleted files
