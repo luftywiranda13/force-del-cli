@@ -22,7 +22,6 @@ const cli = meow(
     flags: {
       verbose: {
         type: 'boolean',
-        default: true,
       },
     },
   }
