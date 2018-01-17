@@ -1,24 +1,42 @@
 'use strict';
 
-const { pathExists, remove, writeFileSync } = require('fs-extra');
+const { join } = require('path');
+const { pathExists } = require('fs-extra');
 const execa = require('execa');
+const fixtures = require('fixturez');
+
+const f = fixtures(__dirname);
 
 it('deletes files', async () => {
-  expect.assertions(2);
-  writeFileSync('1.tmp');
-  writeFileSync('99.tmp');
+  expect.assertions(4);
 
-  await execa('./cli.js', ['*.tmp', '!99.tmp']);
+  const tmpPath = f.copy('fixtures');
+  const folders = [
+    join(tmpPath, 'foo'),
+    join(tmpPath, 'bar'),
+    join(tmpPath, 'nested'),
+  ];
 
-  await expect(pathExists('1.tmp')).resolves.toBe(false);
-  await expect(pathExists('99.tmp')).resolves.toBe(true);
+  await execa('./cli.js', folders);
 
-  await remove('99.tmp');
+  folders.forEach(async x => {
+    await expect(pathExists(x)).resolves.toBe(false);
+  });
+
+  // The parent isn't in the patterns,
+  // So it shouldn't get deleted
+  await expect(pathExists(tmpPath)).resolves.toBe(true);
 });
 
-it('logs deletes files', async () => {
-  expect.assertions(1);
-  const res = await execa('./cli.js', ['*.mp4']);
+it('logs deleted files', async () => {
+  const tmpPath = f.copy('fixtures');
+  const folders = [
+    join(tmpPath, 'foo'),
+    join(tmpPath, 'bar'),
+    join(tmpPath, 'nested'),
+  ];
 
-  expect(res.stdout).not.toBe(undefined);
+  const res = await execa('./cli.js', folders);
+
+  expect(res.stdout.search('Deleted')).not.toBe(-1);
 });

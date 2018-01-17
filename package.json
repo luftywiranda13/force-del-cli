@@ -35,6 +35,7 @@
     "async-to-gen": "^1.3.3",
     "eslint-config-prettier": "^2.9.0",
     "execa": "^0.9.0",
+    "fixturez": "^1.1.0",
     "fs-extra": "^5.0.0",
     "husky": "^0.14.3",
     "jest": "^22.1.1",
@@ -47,10 +48,7 @@
     "testEnvironment": "node",
     "transform": {
       "^.+\\.js$": "async-to-gen"
-    },
-    "watchPathIgnorePatterns": [
-      "<rootDir>/*.tmp"
-    ]
+    }
   },
   "lint-staged": {
     "*.{js,json,md}": [
