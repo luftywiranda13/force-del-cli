@@ -12,7 +12,7 @@ If the matching files or folders are managed by `git`, theyʼll be deleted and m
 
 * Filters the files that should be deleted by using [globby](https://github.com/sindresorhus/globby)
 * Maps those _one-by-one_ to be included in `git rm -f` command
-* Use [del](https://github.com/sindresorhus/del) if the matching item isnʼt managed by `git`
+* Uses [del](https://github.com/sindresorhus/del) if the matching item isnʼt managed by `git`
 * These processes run concurrently
 
 ## Installation
