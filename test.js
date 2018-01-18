@@ -7,17 +7,28 @@ const fixtures = require('fixturez');
 
 const f = fixtures(__dirname);
 
+const realCWD = process.cwd();
+let tmpPath;
+
+beforeEach(() => {
+  tmpPath = f.copy('fixtures');
+  process.chdir(tmpPath);
+});
+
+afterEach(() => {
+  process.chdir(realCWD);
+});
+
 it('deletes files', async () => {
   expect.assertions(4);
 
-  const tmpPath = f.copy('fixtures');
   const folders = [
     join(tmpPath, 'foo'),
     join(tmpPath, 'bar'),
     join(tmpPath, 'nested'),
   ];
 
-  await execa('./cli.js', folders);
+  await execa(join(realCWD, 'cli.js'), folders);
 
   folders.forEach(async x => {
     await expect(pathExists(x)).resolves.toBe(false);
@@ -29,14 +40,15 @@ it('deletes files', async () => {
 });
 
 it('logs deleted files', async () => {
-  const tmpPath = f.copy('fixtures');
+  expect.assertions(1);
+
   const folders = [
     join(tmpPath, 'foo'),
     join(tmpPath, 'bar'),
     join(tmpPath, 'nested'),
   ];
 
-  const res = await execa('./cli.js', folders);
+  const res = await execa(join(realCWD, 'cli.js'), folders);
 
   expect(res.stdout.search('Deleted')).not.toBe(-1);
 });
