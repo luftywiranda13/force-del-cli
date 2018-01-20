@@ -12,11 +12,6 @@ let tmpPath;
 
 beforeEach(() => {
   tmpPath = f.copy('fixtures');
-  process.chdir(tmpPath);
-});
-
-afterEach(() => {
-  process.chdir(realCWD);
 });
 
 it('deletes files', async () => {
@@ -28,7 +23,7 @@ it('deletes files', async () => {
     join(tmpPath, 'nested'),
   ];
 
-  await execa(join(realCWD, 'cli.js'), folders);
+  await execa(join(realCWD, 'cli.js'), folders.concat(`--cwd=${tmpPath}`));
 
   folders.forEach(async x => {
     await expect(pathExists(x)).resolves.toBe(false);
@@ -48,7 +43,10 @@ it('logs deleted files', async () => {
     join(tmpPath, 'nested'),
   ];
 
-  const res = await execa(join(realCWD, 'cli.js'), folders);
+  const res = await execa(
+    join(realCWD, 'cli.js'),
+    folders.concat(`--cwd=${tmpPath}`)
+  );
 
   expect(res.stdout.search('Deleted')).not.toBe(-1);
 });
