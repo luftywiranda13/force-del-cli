@@ -23,18 +23,20 @@ npm install --global force-del-cli
 
 ## Usage
 
-```sh
+```
 $ force-del --help
 
   Usage
     $ force-del [<path|glob> ...]
 
   Options
-    --verbose  List deleted files
+    --cwd=<dir>  Current working directory
+    --verbose    List deleted files
 
   Examples
     $ force-del silly-faces.jpg
     $ force-del '*.jpg' '!too-cute.jpg'
+    $ force-del foo --cwd=../bar
 ```
 
 ## Related

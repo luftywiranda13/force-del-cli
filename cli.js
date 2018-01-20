@@ -12,14 +12,19 @@ const cli = meow(
     $ force-del [<path|glob> ...]
 
   Options
-    --verbose  List deleted files
+    --cwd=<dir>  Current working directory
+    --verbose    List deleted files
 
   Examples
     $ force-del silly-faces.jpg
     $ force-del '*.jpg' '!too-cute.jpg'
+    $ force-del foo --cwd=../bar
 `,
   {
     flags: {
+      cwd: {
+        tyoe: 'string',
+      },
       verbose: {
         type: 'boolean',
       },
@@ -34,7 +39,7 @@ if (cli.input.length === 0) {
   process.exit(1);
 }
 
-forceDel(cli.input).then(files => {
+forceDel(cli.input, cli.flags).then(files => {
   if (cli.flags.verbose) {
     console.log(files.join('\n'));
   }
