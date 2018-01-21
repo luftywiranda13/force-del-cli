@@ -1,5 +1,7 @@
 # force-del-cli
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/luftywiranda13/force-del-cli.svg)](https://greenkeeper.io/)
+
 > Force delete files or folders using [globs](https://github.com/isaacs/minimatch#usage)
 
 [![Package Version](https://img.shields.io/npm/v/force-del-cli.svg?style=flat-square)](https://www.npmjs.com/package/force-del-cli)
