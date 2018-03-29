@@ -23,7 +23,7 @@ const cli = meow(
   {
     flags: {
       cwd: {
-        tyoe: 'string',
+        type: 'string',
       },
       verbose: {
         type: 'boolean',
