@@ -25,7 +25,7 @@
     "cli.js"
   ],
   "dependencies": {
-    "force-del": "^1.1.0",
+    "force-del": "^2.0.0",
     "meow": "^4.0.0",
     "plur": "^2.1.2",
     "update-notifier": "^2.3.0"

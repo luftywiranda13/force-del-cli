@@ -25,13 +25,11 @@ it('deletes files', async () => {
 
   await execa(join(realCWD, 'cli.js'), folders.concat(`--cwd=${tmpPath}`));
 
-  folders.forEach(async x => {
-    await expect(pathExists(x)).resolves.toBe(false);
-  });
+  expect(await pathExists('foo')).toBe(false);
+  expect(await pathExists('bar')).toBe(false);
+  expect(await pathExists('nested')).toBe(false);
 
-  // The parent isn't in the patterns,
-  // So it shouldn't get deleted
-  await expect(pathExists(tmpPath)).resolves.toBe(true);
+  expect(await pathExists(tmpPath)).toBe(true);
 });
 
 it('logs deleted files', async () => {
